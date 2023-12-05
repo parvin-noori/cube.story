@@ -346,6 +346,7 @@ $(document).ready(function () {
                 init: function () {
 
                     const activeIndex = this.activeIndex;
+                   console.log()
                     // createSlides(activeIndex);
                     // Set a cookie with the name 'seen_slide' and value as the index of the currently active slide
                     functionActiveSwiper(activeIndex)
@@ -412,11 +413,11 @@ $(document).ready(function () {
             loop: false,
             preventClicksPropagation: true,
             preventClicks: false,
-            // autoplay: {
-            //     delay: speed,
-            //     disableOnInteraction:true,
-            //
-            // },
+            autoplay: {
+                delay: speed,
+                disableOnInteraction:true,
+
+            },
             touchMoveStopPropagation: true,
             touchStartForcePreventDefault: true,
             pagination: {
@@ -431,7 +432,7 @@ $(document).ready(function () {
             on: {
                 init(e) {
                     e.autoplay.stop();
-                    // runProgress()
+                    runProgress(index)
                     $(`.mySwiper-${index}`).on("click", function (event) {
                         var linkElement = $(event.target).closest('a.story-link'); // Check if the clicked element or its parent is a link
 
@@ -471,14 +472,14 @@ $(document).ready(function () {
                     // activeSwiper.autoplay.stop();
                     // activeSwiper.autoplay.pause();
 
-                    $('.swiper-pagination-bullet-active b').css("animationPlayState", "paused");
+                    $(`.mySwiper-${index} .swiper-pagination-bullet-active b`).css("animationPlayState", "paused");
 
                 },
                 touchEnd() {
                     //touch end on slider and run animation play state
                     var endTime = Date.now() / 1000;
                     timeDelta = endTime - startTime;
-                    $('.swiper-pagination-bullet-active b').css("animationPlayState", "running");
+                    $(`.mySwiper-${index} .swiper-pagination-bullet-active b`).css("animationPlayState", "running");
                     // activeSwiper.autoplay.start();
                     // activeSwiper.autoplay.run();
 
@@ -590,7 +591,7 @@ $(document).ready(function () {
         //     $('.swiper-pagination-bullet b').css('animation-duration', `${speed}ms`).css('background-color', 'white');
 
         // }, 100);
-        // $(`.swiper-pagination-${index} .swiper-pagination-bullet b`).css('animation-duration', `${speed}ms`).css('background-color', 'white');
+
         $(`.mySwiper-${index}.swiper-slide img`).on('contextmenu', function (event) {
             event.preventDefault();
         });
@@ -702,11 +703,11 @@ $(document).ready(function () {
     //
     // }
 
-    // function runProgress() {
-    //     $('.swiper-pagination-bullet b').css('animation-duration', `${speed}ms`).css('background-color', 'white');
+    function runProgress(index) {
+        $(`.swiper-pagination-${index} .swiper-pagination-bullet b`).css('animation-duration', `${speed}ms`).css('background-color', 'white');
     // console.log('load')
     // activeSwiper.autoplay.start();
-    // }
+    }
 
 
     // functionActiveSwiper(0);
