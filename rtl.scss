@@ -1,0 +1,18 @@
+body{
+  direction: rtl;
+}
+.cubeSwiper {
+  .profilePhoto{
+    right: 1rem;
+    left: inherit;
+  }
+}
+.closeBtn{
+  left: 1rem;
+  right: inherit;
+}
+.swiper-pagination-bullet {
+  b {
+    right: 0;
+  }
+}
