@@ -412,11 +412,11 @@ $(document).ready(function () {
             loop: false,
             preventClicksPropagation: true,
             preventClicks: false,
-            autoplay: {
-                delay: speed,
-                disableOnInteraction:true,
-
-            },
+            // autoplay: {
+            //     delay: speed,
+            //     disableOnInteraction:true,
+            //
+            // },
             touchMoveStopPropagation: true,
             touchStartForcePreventDefault: true,
             pagination: {
@@ -430,7 +430,7 @@ $(document).ready(function () {
             },
             on: {
                 init(e) {
-                    // e.autoplay.stop();
+                    e.autoplay.stop();
                     // runProgress()
                     $(`.mySwiper-${index}`).on("click", function (event) {
                         var linkElement = $(event.target).closest('a.story-link'); // Check if the clicked element or its parent is a link
@@ -590,7 +590,7 @@ $(document).ready(function () {
         //     $('.swiper-pagination-bullet b').css('animation-duration', `${speed}ms`).css('background-color', 'white');
 
         // }, 100);
-        $(`.swiper-pagination-${index} .swiper-pagination-bullet b`).css('animation-duration', `${speed}ms`).css('background-color', 'white');
+        // $(`.swiper-pagination-${index} .swiper-pagination-bullet b`).css('animation-duration', `${speed}ms`).css('background-color', 'white');
         $(`.mySwiper-${index}.swiper-slide img`).on('contextmenu', function (event) {
             event.preventDefault();
         });

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c1ed6dd5-c1ff-41f8-a632-9edd643a27ff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-    </list>
+    <list default="true" id="c1ed6dd5-c1ff-41f8-a632-9edd643a27ff" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +23,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="433" column="36" lean-forward="true" selection-start-line="433" selection-start-column="36" selection-end-line="433" selection-end-column="36" />
+            <state relative-caret-position="384">
+              <caret line="598" lean-forward="true" selection-start-line="598" selection-end-line="598" />
+              <folding>
+                <element signature="e#13289#21743#0" />
+                <element signature="e#13899#15447#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,6 +71,8 @@
       <find>init</find>
       <find>functionActive</find>
       <find>b {</find>
+      <find>b</find>
+      <find>.css('animation-duration', `${speed}ms`).css('background-color', 'white')</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -143,16 +147,15 @@
       <option name="presentableId" value="Default" />
       <updated>1701684664232</updated>
       <workItem from="1701684665590" duration="6776000" />
-      <workItem from="1701764484062" duration="6379000" />
+      <workItem from="1701764484062" duration="6735000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13155000" />
+    <option name="totallyTimeSpent" value="13511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -191,8 +194,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="433" column="36" lean-forward="true" selection-start-line="433" selection-start-column="36" selection-end-line="433" selection-end-column="36" />
+        <state relative-caret-position="384">
+          <caret line="598" lean-forward="true" selection-start-line="598" selection-end-line="598" />
+          <folding>
+            <element signature="e#13289#21743#0" />
+            <element signature="e#13899#15447#0" />
+          </folding>
         </state>
       </provider>
     </entry>
