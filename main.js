@@ -345,12 +345,18 @@ $(document).ready(function () {
             on: {
                 init: function () {
 
-                    const activeIndex = this.activeIndex;
-                   console.log()
+                    const activeIndex = this.realIndex;
+                    // console.log(this.slides[activeIndex])
+
+                    // runProgress(index)
+                    // console.log()
                     // createSlides(activeIndex);
                     // Set a cookie with the name 'seen_slide' and value as the index of the currently active slide
                     functionActiveSwiper(activeIndex)
-                    functionActiveSwiper(activeIndex + 1)
+                    // functionActiveSwiper(activeIndex + 1);
+                    // functionActiveSwiper(activeIndex).autoplay.start()
+                    // console.log(functionActiveSwiper(activeIndex))
+                    runProgress(activeIndex)
                     // runProgress()
                     // Do something with each slide's index here
 
@@ -362,13 +368,23 @@ $(document).ready(function () {
                 //     console.log('next')
                 // },
                 slideChange(e) {
-                    const activeIndex = e.activeIndex;
+                    const activeIndex = e.realIndex;
                     const previousIndex = e.previousIndex;
-                    functionActiveSwiper(activeIndex);
+                    // functionActiveSwiper(activeIndex);
+                    // console.log(this.slides[activeIndex])
                     if (previousIndex < activeIndex) {
-                        functionActiveSwiper(activeIndex + 1)
+                        // functionActiveSwiper(activeIndex + 1)
+                        functionActiveSwiper(activeIndex).autoplay.start();
+                        // functionActiveSwiper(previousIndex).autoplay.stop();
+                        runProgress(activeIndex)
+                        // console.log(activeIndex)
+
                     } else {
-                        functionActiveSwiper(previousIndex)
+                        // functionActiveSwiper(activeIndex);
+                        // functionActiveSwiper(previousIndex).autoplay.stop();
+                        // functionActiveSwiper(activeIndex).autoplay.start();
+                        // runProgress(activeIndex)
+                        // console.log(activeIndex)
                     }
 
                     // console.log(previousIndex)
@@ -406,7 +422,8 @@ $(document).ready(function () {
     }
 
     function functionActiveSwiper(index) {
-
+        let clicked = false;
+        let lastClicked;
 
         activeSwiper = new Swiper(`.mySwiper-${index}`, {
             nested: true,
@@ -415,7 +432,7 @@ $(document).ready(function () {
             preventClicks: false,
             autoplay: {
                 delay: speed,
-                disableOnInteraction:true,
+                disableOnInteraction: true,
 
             },
             touchMoveStopPropagation: true,
@@ -432,7 +449,9 @@ $(document).ready(function () {
             on: {
                 init(e) {
                     e.autoplay.stop();
-                    runProgress(index)
+                    // console.log(e)
+                    // console.log(selectedIndex)
+
                     $(`.mySwiper-${index}`).on("click", function (event) {
                         var linkElement = $(event.target).closest('a.story-link'); // Check if the clicked element or its parent is a link
 
@@ -488,7 +507,7 @@ $(document).ready(function () {
                 slideChange(e) {
                     // activeSwiper.autoplay.stop();
                     for (let i = 0; i < $(`.mySwiper-${index} b`).length; i++) {
-                        if ($(`.mySwiper-${index} b`).eq(i).attr('data-index') < $('.mySwiper .swiper-pagination-bullet-active b').attr('data-index')) {
+                        if ($(`.mySwiper-${index} b`).eq(i).attr('data-index') < $(`.mySwiper-${index} .swiper-pagination-bullet-active b`).attr('data-index')) {
                             $(`.mySwiper-${index} .swiper-pagination-bullet`).eq(i).css({'background-color': 'white'})
                             $(`.mySwiper-${index} .swiper-pagination-bullet`).eq(i).css({'opacity': '1'})
                         } else {
@@ -502,44 +521,22 @@ $(document).ready(function () {
                     if (e.isEnd) {
                         setCookies();
                         $('.storiesSwiper .swiper-slide .storiesSwiperImg').eq(cubeSwiper.activeIndex).addClass('seen');
-
+// console.log(e)
                         if (cubeSwiper.isEnd) {
                             setTimeout(function () {
                                 closeStory()
                             }, speed);
                         }
-                        let clicked = false;
-                        let lastClicked;
 
+                        // clearTimeout(lastClicked);
                         if (!clicked) {
+                            // clearTimeout(lastClicked);
                             lastClicked = setTimeout(function () {
                                 cubeSwiper.slideNext();
+                                // console.log(e)
                             }, speed);
+                            // clearTimeout(lastClicked);
                         }
-                        // setTimeout(function () {
-                        //     cubeSwiper.slideNext();
-                        // }, speed);
-                        // reorderStoriesSlides();
-                        //
-                        // function reorderStoriesSlides() {
-                        //     const $storiesSlides = $('.storiesSwiper .swiper-slide');
-                        //
-                        //     $storiesSlides.sort(function (a, b) {
-                        //         const hasSeenClassA = $(a).find('.storiesSwiperImg').hasClass('seen');
-                        //         const hasSeenClassB = $(b).find('.storiesSwiperImg').hasClass('seen');
-                        //
-                        //         if (hasSeenClassA && !hasSeenClassB) {
-                        //             return 1; // Move the slide with 'seen' class to the end
-                        //         } else if (!hasSeenClassA && hasSeenClassB) {
-                        //             return -1; // Keep the order for slides without 'seen' class
-                        //         } else {
-                        //             return 0; // Keep the order for slides without 'seen' class
-                        //         }
-                        //     });
-                        //
-                        //     $('.storiesSwiper .swiper-wrapper').html($storiesSlides);
-                        // }
-                        //change slide storyFullSwiper on last slide (auto)
 
 
                         // change slide storyFullSwiper on last slide of swiper (with click)
@@ -574,7 +571,7 @@ $(document).ready(function () {
 
                                 var relativeX = (event.pageX - offset.left);
                                 if (timeDelta < 0.5 && relativeX < (e.width / 2)) {
-                                    cubeSwiper.slidePrev();
+                                    // cubeSwiper.slidePrev();
                                     // imageLoaded();
                                 }
                             }
@@ -582,9 +579,7 @@ $(document).ready(function () {
 
                     }
                 },
-                transitionEnd(e) {
-                    // activeSwiper.autoplay.start();
-                }
+
             }
         });
         // setTimeout(function () {
@@ -705,8 +700,8 @@ $(document).ready(function () {
 
     function runProgress(index) {
         $(`.swiper-pagination-${index} .swiper-pagination-bullet b`).css('animation-duration', `${speed}ms`).css('background-color', 'white');
-    // console.log('load')
-    // activeSwiper.autoplay.start();
+        // console.log('load')
+        // activeSwiper.autoplay.start();
     }
 
 
